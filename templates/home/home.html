@@ -1,0 +1,36 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% block extcss %}
+    <link rel="stylesheet" href="{% static 'home/css/home.css' %}">
+{% endblock %}
+{% block extjs %}
+    <script src="{% static 'home/js/home.js' %}"></script>
+{% endblock %}
+
+{% block title %}
+    爱鲜蜂 | 首页
+{% endblock %}
+
+{% block content %}
+    <div class="home">
+{#    轮播图#}
+        <div class="swiper-container" id="topSwiper">
+            <div class="swiper-wrapper">
+                {% for wheel in wheels %}
+                    <div class="swiper-slide">
+                        <img src="{{ wheel.img }}" alt="">
+                    </div>
+                {% endfor %}
+            </div>
+            <!-- Add Pagination -->
+            <div class="swiper-pagination"></div>
+            <!-- Add Arrows -->
+{#            <div class="swiper-button-next"></div>#}
+{#            <div class="swiper-button-prev"></div>#}
+        </div>
+{#    导航#}
+
+
+{#    每日必购#}
+    </div>
+{% endblock %}
