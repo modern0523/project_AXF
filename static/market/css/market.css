@@ -45,7 +45,9 @@ footer .market dd {
 .market .type-slider ul .active span{
     display: block;
 }
-.market .type-slider ul li a{}
+.market .type-slider ul li a{
+    color: black;
+}
 
 
 
@@ -105,11 +107,13 @@ footer .market dd {
 .market .main-content .content-wrapper ul li a{
     display: block;
     height: 5rem;
+    color: black;
 }
 .market .main-content .content-wrapper ul li a .goods-img{
     display: block;
     width: 33.3%;
     float: left;
+    overflow: hidden;
 }
 .market .main-content .content-wrapper ul li a .goods-info{
     width: 66.6%;
@@ -160,7 +164,7 @@ footer .market dd {
     position: absolute;
     right: 0.2rem;
     bottom: 0;
-    width: 28%;
+    width: 26%;
     height: 1.5rem;
     line-height: 1.5rem;
     font-size: 0.8rem;
