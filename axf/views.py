@@ -45,7 +45,7 @@ def home(request):
     return render(request,'home/home.html',context=data)
 
 
-def market(request,categoryid):
+def market(request,categoryid,childid,sortid):
     # 　闪购超市　商品侧边分类
     foodtypes = Foodtypes.objects.all()
 
@@ -87,13 +87,36 @@ def market(request,categoryid):
     # 接收传过来的typeid，然后根据这个id来过滤商品
     # 商品信息(过滤根据分类id)
 
-    goods = Goods.objects.filter(categoryid=categoryid)
+
+    #顶部导航左边分类
+    #如果传了子类id,则根据子类id进一步过滤，如果没点击子类a标签，则没传子类id，所以需要给个默认值０，默认显示全部分类
+    #这个０要设置在base.html中的market路由里
+    # 注意侧边栏a标签的路由分类id后面也要给个默认子类id参数0
+    if childid=="0":       #说明只显示侧边栏大分类
+        goods = Goods.objects.filter(categoryid=categoryid)
+    else:                  #说明点击了顶部导航栏里的子类a标签
+        goods = Goods.objects.filter(categoryid=categoryid,childcid=childid)
+
+
+    #顶部导航右边排序
+    if sortid == '1':  # 销量排序
+        goods = goods.order_by('-productnum')
+    elif sortid == '2':  # 价格最低
+        goods = goods.order_by('price')
+    elif sortid == '3':  # 价格最高
+        goods = goods.order_by(('-price'))
+
+
+
 
 
     data = {
         'foodtypes':foodtypes,
         'goods':goods,
         'childtypeList':childtypeList,
+        'categoryid':categoryid,
+        'childid':childid,
+
     }
 
 
